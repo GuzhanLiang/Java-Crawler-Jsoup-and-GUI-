@@ -1,0 +1,7 @@
+{
+  "java.project.sourcePaths": ["Gui/src"],
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "c:\\Users\\chino\\Downloads\\jsoup-1.15.3.jar"
+  ]
+}

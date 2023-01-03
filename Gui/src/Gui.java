@@ -24,6 +24,9 @@ import java.util.ArrayList;
 
 public class Gui implements ActionListener {
     private static String s = "";
+    private static String url;
+    private static String w;
+    private static String de;
     private static ArrayList<String> list = new ArrayList<>();
 
     private static JTextField field1 = new JTextField();
@@ -78,9 +81,9 @@ public class Gui implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // String url = "https://www.netflix.com/ca/";-> testlink
         // int de = 3; -> test
-        String url = field1.getText();
-        String w = field2.getText();
-        String de = field3.getText();
+        url = field1.getText();
+        w = field2.getText();
+        de = field3.getText();
 
         int d = Integer.parseInt(de);
 

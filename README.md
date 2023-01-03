@@ -7,13 +7,13 @@
 <h1> Export jar file <h1>
 
 <h1> Example: <h1>
-<h1> search word "product" on Stack Overflow <h1>
+<h1> search word "product" on Stack Overflow with depth 1 <h1>
   
 ![cr](https://user-images.githubusercontent.com/73972656/210304398-1bfeffd6-e8b8-4cc7-9f19-3856b6e5d77f.PNG)
 
 
 
-<h1> search word "movie" on Netflix <h1>
+<h1> search word "movie" on Netflix with depth 3<h1>
 
 ![cll](https://user-images.githubusercontent.com/73972656/210304461-8db6e1b1-d315-4519-8fa0-7f5abe146cd5.PNG)
 

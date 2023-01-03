@@ -1,16 +1,15 @@
 
 import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -18,18 +17,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import javafx.scene.text.Text;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Gui implements ActionListener {
-    private static String s;
+    private static String s = "";
     private static ArrayList<String> list = new ArrayList<>();
-    private static String url;
-    private static int de;
+
     private static JTextField field1 = new JTextField();
     private static JTextField field2 = new JTextField();
     private static JTextField field3 = new JTextField();
@@ -40,7 +36,7 @@ public class Gui implements ActionListener {
     private static JLabel l4 = new JLabel("   ");
 
     private JFrame frame2;
-    private JPanel panel2;
+    // private JPanel panel2;
     private JFrame frame;
     private JPanel panel;
 
@@ -70,6 +66,7 @@ public class Gui implements ActionListener {
         frame.setTitle("Our GUI");
         frame.pack();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
     public static void main(String[] args) {
@@ -79,8 +76,8 @@ public class Gui implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // String url = "https://www.netflix.com/ca/";
-        // int de = 3;
+        // String url = "https://www.netflix.com/ca/";-> testlink
+        // int de = 3; -> test
         String url = field1.getText();
         String w = field2.getText();
         String de = field3.getText();
@@ -91,38 +88,44 @@ public class Gui implements ActionListener {
         System.out.println(de);
         crawl(d, url, w, new ArrayList<String>());
 
-        // // System.out.println(s);
-
         frame2();
-        // System.out.println(list);
+        // System.out.println(list); ->test
 
     }
 
     private JFrame frame2() {
 
-        frame2 = new JFrame();
+        frame2 = new JFrame("result");
 
-        frame.setLayout(new GridLayout(list.size(), 1, 0, 6));
-        panel2 = new JPanel();
-        panel2.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
+        JTextArea area = new JTextArea(10, 100);
+        JScrollPane pane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        for (int i = 0; i < list.size(); i++) {
-            JLabel pp = new JLabel(list.get(i), SwingConstants.CENTER);
-
-            panel2.add(pp);
-            System.out.println(list.get(i));
-        }
-
-        frame2.add(panel2, BorderLayout.CENTER);
-
-        frame2.pack();
+        area.setText(s);
+        area.setFont(new Font("Arial", Font.PLAIN, 14));
+        area.setLineWrap(true);
+        area.setWrapStyleWord(true);
+        frame2.add(pane);
+        // frame2.add(area);
+        frame2.setSize(500, 500);
         frame2.setVisible(true);
+        // frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame2.setLocationRelativeTo(null);
+
+        // panel2.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
+
+        // for (int i = 0; i < list.size(); i++) {
+        // JLabel pp = new JLabel(list.get(i), SwingConstants.CENTER);
+
+        // panel2.add(pp);
+        // System.out.println(list.get(i));
+        // }
 
         return frame2;
     }
 
     public static void crawl(int depth, String url, String word, ArrayList<String> visited) {
-        System.out.println(depth);
+        // System.out.println(depth);
         if (depth > 0) {
 
             Document doc = (request(url, visited, word));
@@ -149,13 +152,21 @@ public class Gui implements ActionListener {
             Document doc = con.get();
             if (con.response().statusCode() == 200) {
                 Elements para = doc.getElementsByTag("p");
+                Elements li = doc.getElementsByTag("li");
                 for (Element e : para) {
                     if (e.text().contains(wordmatch) && !list.contains(e.text())) {
                         // System.out.println(e);
                         list.add(e.text());
-                        s = s + e.text();
+                        s = e.text() + "\n" + "\n" + s;
                     }
                 }
+                for (Element l : li) {
+                    if (l.text().contains(wordmatch) && !list.contains(l.text())) {
+                        list.add(l.text());
+                        s = s + "\n" + "\n" + l.text();
+                    }
+                }
+
                 v.add(url);
                 return doc;
             } else {

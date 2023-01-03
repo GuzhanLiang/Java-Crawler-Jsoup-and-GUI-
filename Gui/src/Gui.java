@@ -128,7 +128,7 @@ public class Gui implements ActionListener {
     }
 
     public static void crawl(int depth, String url, String word, ArrayList<String> visited) {
-        // System.out.println(depth);
+        System.out.println(depth);
         if (depth > 0) {
 
             Document doc = (request(url, visited, word));

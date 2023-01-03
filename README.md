@@ -8,10 +8,12 @@
 
 <h1> Example: <h1>
 <h1> search word "product" on Stack Overflow <h1>
+  
 ![cr](https://user-images.githubusercontent.com/73972656/210304398-1bfeffd6-e8b8-4cc7-9f19-3856b6e5d77f.PNG)
 
 
 
 <h1> search word "movie" on Netflix <h1>
 
-![cr](https://user-images.githubusercontent.com/73972656/210304404-24a667f6-558f-4592-ba7d-dab319dcfa92.PNG)
+![cll](https://user-images.githubusercontent.com/73972656/210304461-8db6e1b1-d315-4519-8fa0-7f5abe146cd5.PNG)
+

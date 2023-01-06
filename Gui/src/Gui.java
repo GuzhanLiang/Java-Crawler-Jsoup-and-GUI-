@@ -103,7 +103,9 @@ public class Gui implements ActionListener {
         JTextArea area = new JTextArea(10, 100);
         JScrollPane pane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
+        if (s.length() == 0) {
+            s = "no result found";
+        }
         area.setText(s);
         area.setFont(new Font("Arial", Font.PLAIN, 14));
         area.setLineWrap(true);
